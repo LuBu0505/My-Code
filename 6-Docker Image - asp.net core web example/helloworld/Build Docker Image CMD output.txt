@@ -1,0 +1,363 @@
+Microsoft Windows [Version 10.0.19042.685]
+(c) 2020 Microsoft Corporation. All rights reserved.
+
+C:\Users\bulu>cd C:\LBWorkSpace\docker\asp.net core\helloworld
+
+C:\LBWorkSpace\docker\asp.net core\helloworld>dir
+ Volume in drive C is OSDisk
+ Volume Serial Number is 4A75-5D11
+
+ Directory of C:\LBWorkSpace\docker\asp.net core\helloworld
+
+12/21/2020  02:42 PM    <DIR>          .
+12/21/2020  02:42 PM    <DIR>          ..
+12/21/2020  02:41 PM               162 appsettings.Development.json
+12/21/2020  02:41 PM               192 appsettings.json
+12/21/2020  02:42 PM    <DIR>          bin
+12/21/2020  02:41 PM               141 helloworld.csproj
+12/21/2020  02:42 PM    <DIR>          obj
+12/21/2020  02:41 PM               718 Program.cs
+12/21/2020  02:41 PM    <DIR>          Properties
+12/21/2020  02:44 PM             1,545 Startup.cs
+               5 File(s)          2,758 bytes
+               5 Dir(s)  687,279,497,216 bytes free
+
+C:\LBWorkSpace\docker\asp.net core\helloworld>docker build -t helloworldapp
+'docker' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\LBWorkSpace\docker\asp.net core\helloworld>docker
+
+Usage:  docker [OPTIONS] COMMAND
+
+A self-sufficient runtime for containers
+
+Options:
+      --config string      Location of client config files (default
+                           "C:\\Users\\bulu\\.docker")
+  -c, --context string     Name of the context to use to connect to the
+                           daemon (overrides DOCKER_HOST env var and
+                           default context set with "docker context use")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket(s) to connect to
+  -l, --log-level string   Set the logging level
+                           ("debug"|"info"|"warn"|"error"|"fatal")
+                           (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default
+                           "C:\\Users\\bulu\\.docker\\ca.pem")
+      --tlscert string     Path to TLS certificate file (default
+                           "C:\\Users\\bulu\\.docker\\cert.pem")
+      --tlskey string      Path to TLS key file (default
+                           "C:\\Users\\bulu\\.docker\\key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Management Commands:
+  builder     Manage builds
+  config      Manage Docker configs
+  container   Manage containers
+  context     Manage contexts
+  image       Manage images
+  network     Manage networks
+  node        Manage Swarm nodes
+  plugin      Manage plugins
+  scan*       Docker Scan (Docker Inc., v0.3.4)
+  secret      Manage Docker secrets
+  service     Manage services
+  stack       Manage Docker stacks
+  swarm       Manage Swarm
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  build       Build an image from a Dockerfile
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  exec        Run a command in a running container
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  images      List images
+  import      Import the contents from a tarball to create a filesystem image
+  info        Display system-wide information
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  login       Log in to a Docker registry
+  logout      Log out from a Docker registry
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  ps          List containers
+  pull        Pull an image or a repository from a registry
+  push        Push an image or a repository to a registry
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  run         Run a command in a new container
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  search      Search the Docker Hub for images
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  version     Show the Docker version information
+  wait        Block until one or more containers stop, then print their exit codes
+
+Run 'docker COMMAND --help' for more information on a command.
+
+C:\LBWorkSpace\docker\asp.net core\helloworld>
+C:\LBWorkSpace\docker\asp.net core\helloworld>
+C:\LBWorkSpace\docker\asp.net core\helloworld>docker build -t helloworldapp
+"docker build" requires exactly 1 argument.
+See 'docker build --help'.
+
+Usage:  docker build [OPTIONS] PATH | URL | -
+
+Build an image from a Dockerfile
+
+C:\LBWorkSpace\docker\asp.net core\helloworld>docker build -t helloworldapp .
+Sending build context to Docker daemon  676.9kB
+Step 1/11 : FROM mcr.microsoft.com/dotnet/core/sdk:3.0 AS build
+3.0: Pulling from dotnet/core/sdk
+a35da61c3562: Pull complete
+fc2cafb7cdd0: Pull complete
+8367da8372fd: Pull complete
+17eb934f4a9b: Pull complete
+503ecfeed7d9: Pull complete
+a3678a2db76c: Pull complete
+ea6ea20697f3: Pull complete
+534ef3c245ac: Pull complete
+Digest: sha256:5b8a1d8ef23f472291d64c8b86b79fbaec5b0f55ac96ecac3460e66120ac9c35
+Status: Downloaded newer image for mcr.microsoft.com/dotnet/core/sdk:3.0
+ ---> 8eed05782d13
+Step 2/11 : WORKDIR /app
+ ---> Running in 2c9e02efd8d1
+Removing intermediate container 2c9e02efd8d1
+ ---> 207b1fbaca4a
+Step 3/11 : COPY *.csproj ./
+ ---> ac4417eb60bf
+Step 4/11 : RUN dotnet restore
+ ---> Running in 647bdf85a92c
+  Restore completed in 108.67 ms for C:\app\helloworld.csproj.
+Removing intermediate container 647bdf85a92c
+ ---> f8495da6126d
+Step 5/11 : COPY . ./
+ ---> 30c0ab242a00
+Step 6/11 : RUN dotnet publish -c Release -o out
+ ---> Running in 9513a60dd7b2
+Microsoft (R) Build Engine version 16.3.2+e481bbf88 for .NET Core
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  Restore completed in 127 ms for C:\app\helloworld.csproj.
+C:\Program Files\dotnet\sdk\3.0.103\Microsoft.Common.CurrentVersion.targets(1175,5): error MSB3644: The reference assemblies for .NETFramework,Version=v5.0 were not found. To resolve this, install the Developer Pack (SDK/Targeting Pack) for this framework version or retarget your application. You can download .NET Framework Developer Packs at https://aka.ms/msbuild/developerpacks [C:\app\helloworld.csproj]
+The command 'cmd /S /C dotnet publish -c Release -o out' returned a non-zero code: 1
+
+C:\LBWorkSpace\docker\asp.net core\helloworld>docker build -t helloworldapp .
+Sending build context to Docker daemon  676.9kB
+Step 1/11 : FROM mcr.microsoft.com/dotnet/core/sdk:3.0 AS build
+ ---> 8eed05782d13
+Step 2/11 : WORKDIR /app
+ ---> Using cache
+ ---> 207b1fbaca4a
+Step 3/11 : COPY *.csproj ./
+ ---> Using cache
+ ---> ac4417eb60bf
+Step 4/11 : RUN dotnet restore
+ ---> Using cache
+ ---> f8495da6126d
+Step 5/11 : COPY . ./
+ ---> 8ab015d9797b
+Step 6/11 : RUN dotnet publish -c Release -o out
+ ---> Running in 3f6d48893169
+Microsoft (R) Build Engine version 16.3.2+e481bbf88 for .NET Core
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  Restore completed in 93.54 ms for C:\app\helloworld.csproj.
+C:\Program Files\dotnet\sdk\3.0.103\Microsoft.Common.CurrentVersion.targets(1175,5): error MSB3644: The reference assemblies for .NETFramework,Version=v5.0 were not found. To resolve this, install the Developer Pack (SDK/Targeting Pack) for this framework version or retarget your application. You can download .NET Framework Developer Packs at https://aka.ms/msbuild/developerpacks [C:\app\helloworld.csproj]
+The command 'cmd /S /C dotnet publish -c Release -o out' returned a non-zero code: 1
+
+C:\LBWorkSpace\docker\asp.net core\helloworld>docker build -t helloworldapp .
+Sending build context to Docker daemon  676.9kB
+Step 1/11 : FROM mcr.microsoft.com/dotnet/core/sdk:5.0 AS build
+manifest for mcr.microsoft.com/dotnet/core/sdk:5.0 not found: manifest unknown: manifest tagged by "5.0" is not found
+
+C:\LBWorkSpace\docker\asp.net core\helloworld>docker build -t helloworldapp .
+Sending build context to Docker daemon  676.9kB
+Step 1/11 : FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
+3.1: Pulling from dotnet/core/sdk
+2b7f697bab3b: Pull complete
+c07aa142600e: Pull complete
+efd7b8a758ba: Pull complete
+fbccf9c8fd66: Pull complete
+200593d14be6: Pull complete
+b23e89504bf4: Pull complete
+739ea0c9731a: Pull complete
+19a19b172a2e: Pull complete
+fe582d83ca52: Pull complete
+884e98282080: Pull complete
+58e071a9428b: Pull complete
+4a6958c69963: Pull complete
+aa903d7b6794: Pull complete
+4cbbef89d7da: Pull complete
+Digest: sha256:3cb6a73ed35b6c4819156207a9b43d03898e6814dd58e4ae624334718a3746a8
+Status: Downloaded newer image for mcr.microsoft.com/dotnet/core/sdk:3.1
+ ---> f522596b2d14
+Step 2/11 : WORKDIR /app
+ ---> Running in 428bac051ea3
+Removing intermediate container 428bac051ea3
+ ---> 07c93dfc7d6d
+Step 3/11 : COPY *.csproj ./
+ ---> 0d8981a7b3d0
+Step 4/11 : RUN dotnet restore
+ ---> Running in 9e70380d23d5
+  Determining projects to restore...
+  Restored C:\app\helloworld.csproj (in 175 ms).
+Removing intermediate container 9e70380d23d5
+ ---> e83093de4277
+Step 5/11 : COPY . ./
+ ---> 834235193f70
+Step 6/11 : RUN dotnet publish -c Release -o out
+ ---> Running in 32b217868ebb
+Microsoft (R) Build Engine version 16.7.1+52cd83677 for .NET
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  Determining projects to restore...
+  Restored C:\app\helloworld.csproj (in 209 ms).
+C:\Program Files\dotnet\sdk\3.1.404\Microsoft.Common.CurrentVersion.targets(1177,5): error MSB3644: The reference assemblies for .NETFramework,Version=v5.0 were not found. To resolve this, install the Developer Pack (SDK/Targeting Pack) for this framework version or retarget your application. You can download .NET Framework Developer Packs at https://aka.ms/msbuild/developerpacks [C:\app\helloworld.csproj]
+The command 'cmd /S /C dotnet publish -c Release -o out' returned a non-zero code: 1
+
+C:\LBWorkSpace\docker\asp.net core\helloworld>docker build -t helloworldapp .
+Sending build context to Docker daemon  1.214MB
+Step 1/11 : FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
+ ---> f522596b2d14
+Step 2/11 : WORKDIR /app
+ ---> Using cache
+ ---> 07c93dfc7d6d
+Step 3/11 : COPY *.csproj ./
+ ---> 3b312caa5475
+Step 4/11 : RUN dotnet restore
+ ---> Running in b4a875c786b9
+  Determining projects to restore...
+  Restored C:\app\helloworld.csproj (in 166 ms).
+Removing intermediate container b4a875c786b9
+ ---> d409709120d9
+Step 5/11 : COPY . ./
+ ---> 2903eb049f15
+Step 6/11 : RUN dotnet publish -c Release -o out
+ ---> Running in 27fe7e9ef2d9
+Microsoft (R) Build Engine version 16.7.1+52cd83677 for .NET
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  Determining projects to restore...
+  Restored C:\app\helloworld.csproj (in 173 ms).
+  helloworld -> C:\app\bin\Release\netcoreapp3.1\helloworld.dll
+  helloworld -> C:\app\out\
+Removing intermediate container 27fe7e9ef2d9
+ ---> a6866c044c13
+Step 7/11 : FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS runtime
+3.1: Pulling from dotnet/core/aspnet
+2b7f697bab3b: Already exists
+c07aa142600e: Already exists
+efd7b8a758ba: Already exists
+fbccf9c8fd66: Already exists
+200593d14be6: Already exists
+b23e89504bf4: Already exists
+739ea0c9731a: Already exists
+Digest: sha256:f786e94436a4a4f8f86e3d86372d54d6fd39a4085c6416ecaa7096abb72139a0
+Status: Downloaded newer image for mcr.microsoft.com/dotnet/core/aspnet:3.1
+ ---> f954bb56a426
+Step 8/11 : WORKDIR /app
+ ---> Running in 08e6d4be5597
+Removing intermediate container 08e6d4be5597
+ ---> e8ee977084d4
+Step 9/11 : COPY --from=build /app/out .
+ ---> 268fe2750761
+Step 10/11 : ENV ASPNETCORE_URLS http://0.0.0.0:3721
+ ---> Running in f075e116cffe
+Removing intermediate container f075e116cffe
+ ---> 2af70949434f
+Step 11/11 : ENTRYPOINT ["dotnet", "helloworld.dll"]
+ ---> Running in 663230c498fd
+Removing intermediate container 663230c498fd
+ ---> 524b6444c683
+Successfully built 524b6444c683
+Successfully tagged helloworldapp:latest
+
+C:\LBWorkSpace\docker\asp.net core\helloworld>
+C:\LBWorkSpace\docker\asp.net core\helloworld>
+C:\LBWorkSpace\docker\asp.net core\helloworld>
+C:\LBWorkSpace\docker\asp.net core\helloworld>docker images ls
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+
+C:\LBWorkSpace\docker\asp.net core\helloworld>docker images
+REPOSITORY                             TAG                 IMAGE ID            CREATED             SIZE
+helloworldapp                          latest              524b6444c683        2 minutes ago       354MB
+<none>                                 <none>              a6866c044c13        2 minutes ago       772MB
+<none>                                 <none>              834235193f70        5 minutes ago       769MB
+<none>                                 <none>              8ab015d9797b        13 minutes ago      733MB
+<none>                                 <none>              30c0ab242a00        16 minutes ago      733MB
+mcr.microsoft.com/dotnet/core/sdk      3.1                 f522596b2d14        12 days ago         766MB
+mcr.microsoft.com/dotnet/core/aspnet   3.1                 f954bb56a426        12 days ago         353MB
+mcr.microsoft.com/dotnet/core/sdk      3.0                 8eed05782d13        10 months ago       729MB
+
+C:\LBWorkSpace\docker\asp.net core\helloworld>docker run -d -p 8088:3721 -name helloworldapp
+unknown shorthand flag: 'n' in -name
+See 'docker run --help'.
+
+C:\LBWorkSpace\docker\asp.net core\helloworld>docker run -d -p 8088:3721 -name myapp helloworldapp
+unknown shorthand flag: 'n' in -name
+See 'docker run --help'.
+
+C:\LBWorkSpace\docker\asp.net core\helloworld>docker run -d -p 8088:3721 --name myapp helloworldapp
+b6c99af641bfd923274ab6ae27f2a58fb7f74078f491bf24e09f34e06f26872a
+
+C:\LBWorkSpace\docker\asp.net core\helloworld>docker container
+
+Usage:  docker container COMMAND
+
+Manage containers
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  exec        Run a command in a running container
+  export      Export a container's filesystem as a tar archive
+  inspect     Display detailed information on one or more containers
+  kill        Kill one or more running containers
+  logs        Fetch the logs of a container
+  ls          List containers
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  prune       Remove all stopped containers
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  run         Run a command in a new container
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  wait        Block until one or more containers stop, then print their exit codes
+
+Run 'docker container COMMAND --help' for more information on a command.
+
+C:\LBWorkSpace\docker\asp.net core\helloworld>docker container ls
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
+b6c99af641bf        helloworldapp       "dotnet helloworld.d…"   24 seconds ago      Up 22 seconds       0.0.0.0:8088->3721/tcp   myapp
+
+C:\LBWorkSpace\docker\asp.net core\helloworld>

@@ -1,0 +1,1 @@
+使用Java SDK操作Stroage Blob的基本原子操作
