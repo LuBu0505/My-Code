@@ -20,9 +20,9 @@ namespace BlobQuickstartV12
             // console or with Visual Studio, the shell or application needs to be closed
             // and reloaded to take the environment variable into account.
             //string connectionString = "DefaultEndpointsProtocol=https;AccountName=<AccountKey>;AccountKey=<AccountKey>;EndpointSuffix=core.chinacloudapi.cn";
-            string accountsas = "http://139.217.240.7/?sv=2019-10-10&ss=bfqt&srt=sco&sp=rwdlacup&se=2020-11-20T15:49:08Z&st=2020-11-20T07:49:08Z&spr=https,http&sig=C0K9%2BmrnYSBTsCQUaRahx7fOwfmGTYhdQry9AxBYl%2FQ%3D";
+            string accountsas = "http://139.217.240.7/?sv=2019-10-10&ss=bfqt&srt=sco&sp=rwdlacup&se=2020-11-20T15:49:08Z&st=2020-11-20T07:49:08Z&spr=https,http&sig=xxxxxxxxxxxxxxxxxxxxxxxxxxxx";
 
-            //string accountsas = "https://storageaccountapprg9ac8.blob.core.chinacloudapi.cn/?sv=2019-10-10&ss=bfqt&srt=sco&sp=rwdlacup&se=2020-11-20T15:49:08Z&st=2020-11-20T07:49:08Z&spr=https,http&sig=C0K9%2BmrnYSBTsCQUaRahx7fOwfmGTYhdQry9AxBYl%2FQ%3D";
+            //string accountsas = "https://xxxxxxxxxxxxxxxxx.blob.core.chinacloudapi.cn/?sv=2019-10-10&ss=bfqt&srt=sco&sp=rwdlacup&se=2020-11-20T15:49:08Z&st=2020-11-20T07:49:08Z&spr=https,http&sig=C0K9%xxxxxxxxxxxxxxxxxx%2FQ%3D";
             Uri sasuri = new Uri(accountsas);
             // Create a BlobServiceClient object which will be used to create a container client
             BlobServiceClient blobServiceClient = new BlobServiceClient(sasuri, null);
