@@ -11,7 +11,7 @@ try:
     # the shell or application needs to be closed and reloaded to take the
     # environment variable into account.
     #connect_str = os.getenv('AZURE_STORAGE_CONNECTION_STRING')
-    connect_str ="DefaultEndpointsProtocol=https;AccountName=lbtvm01store;AccountKey=V4CXVVJ/1DqRbwHpj1sa8Ct89tfBqOp/pT3vQ4istpptXh/Nj9ycJBx3HEUYzBo49SZ+oEijBo1Q+AI/oVZHQg==;EndpointSuffix=core.chinacloudapi.cn"
+    connect_str ="DefaultEndpointsProtocol=https;AccountName=xxxxx;AccountKey=xxxxxxxxx;EndpointSuffix=core.chinacloudapi.cn"
     print(connect_str)
     # Create the BlobServiceClient object which will be used to create a container client
     blob_service_client = BlobServiceClient.from_connection_string(connect_str)
@@ -32,8 +32,6 @@ try:
             print(files) 
             container_client.upload_blob("\\"+files,data)
 
-
-#https://lbtvm01store.blob.core.chinacloudapi.cn/quickstart4bc6d88b-5863-4849-991b-decd28ef2db2//quickstart22a2b36c-d421-4b85-99c2-4a1e4c739e7aDOWNLOAD.txt
 
 
     # # Write text to the file
