@@ -8,7 +8,7 @@ try:
     local_path = "./data"
     local_file_name = "download" + str(uuid.uuid4()) + ".txt"
 
-    connect_str ="DefaultEndpointsProtocol=https;AccountName=lbmltest011472179626;AccountKey=mYUg8y5Vq7AxefVqG0B8rxcJZEcxqYoM5ReQtqZU9sx9EoARu+QHS7qfFEFn+NGo4RWY2pXKi+3igyZClPzAsQ==;EndpointSuffix=core.chinacloudapi.cn"
+    connect_str ="DefaultEndpointsProtocol=https;AccountName=xxxxx;AccountKey=xxxx+x+x+x==;EndpointSuffix=core.chinacloudapi.cn"
 
     # Create the BlobServiceClient object which will be used to create a container client
     blob_service_client = BlobServiceClient.from_connection_string(connect_str)
