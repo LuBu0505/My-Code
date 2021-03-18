@@ -1,0 +1,102 @@
+az spring-cloud app create -n hellospring -s lbjavaspring01 -g app-rg --is-public
+
+
+az spring-cloud app deploy -n hellospring -s lbjavaspring01 -g app-rg --jar-path "C:\LBWorkSpace\AppConfig\spring-toggles\spring-toggles\build\libs\demo-0.0.1-SNAPSHOT.jar"
+
+
+az spring-cloud app logs -n hellospring -s lbjavaspring01 -g app-rg --lines 100 -f
+
+
+https://primary:COsMWjHh2OeiG7Y4TJxDc2a67QTpIKcqNp5sQxb66JfHUFtLWPezuhbtPTY3uc8Q@lbjavaspring01.test.microservices.azure.cn/hellospring/default/api/abTest
+
+
+C:\LBWorkSpace\AppService\Function\.vscode\launch.json
+
+C:\LBWorkSpace\AppService\Function\.vscode\tasks.json
+
+Value cannot be null. (Parameter 'provider') :https://github.com/Azure/azure-functions-core-tools/issues/1995
+
+在 Azure 中使用 Visual Studio Code 创建 Java 函数: https://docs.azure.cn/zh-cn/azure-functions/create-first-function-vs-code-java
+
+
+
+
+az role assignment create --role "Storage Account Key Operator Service Role" --assignee-object-id "70e7e5a6-8f7a-4190-b401-ac8038ea2df2" --scope "/subscriptions/a9dc7515-7692-4316-9ad4-762f383eec10/resourceGroups/dev-service-rg/providers/Microsoft.Storage/storageAccounts/lbstoragekvtest01"
+
+
+# Give your user principal access to all storage account permissions, on your Key Vault instance
+
+az keyvault set-policy --name lbkvtest01 --upn bulu@mcpod.partner.onmschina.cn --storage-permissions get list delete set update regeneratekey getsas listsas deletesas setsas recover backup restore purge
+
+
+az keyvault storage add --vault-name lbkvtest01 -n lbstoragekvtest01 --active-key-name key1 --auto-regenerate-key --regeneration-period P1h --resource-id "/subscriptions/a9dc7515-7692-4316-9ad4-762f383eec10/resourceGroups/dev-service-rg/providers/Microsoft.Storage/storageAccounts/lbstoragekvtest01"
+
+
+az storage account generate-sas --expiry 2021-01-19 --permissions rw --resource-types sco --services bfqt --https-only --account-name lbstoragekvtest01 --account-key 00000000
+
+
+az keyvault storage sas-definition create --vault-name lbkvtest01 --account-name lbstoragekvtest01 -n mytestsasdefinition01 --validity-period P1D --sas-type account   --template-uri "se=2021-01-19&sp=rw&spr=https&sv=2018-03-28&ss=bqtf&srt=sco&sig=kygg34%2BA6MRfXqNq63WqSCEQF629TWw8mc/wqVDxxBI%3D"
+
+
+az keyvault storage sas-definition create --vault-name lbkvtest01 --account-name lbstoragekvtest01 -n testSAS --validity-period P1D --sas-type account --template-uri 'se=2021-01-19&sp=rw&spr=https&sv=2018-03-28&ss=bqtf&srt=sco&sig=kygg34%2BA6MRfXqNq63WqSCEQF629TWw8mc/wqVDxxBI%3D'
+
+
+az keyvault storage sas-definition create --vault-name lbkvtest01 --account-name lbstoragekvtest01 -n testSAS --validity-period P1D --sas-type account --template-uri 'se=2021-01-19%26sp=rw&spr=https&sv=2018-03-28&ss=bqtf&srt=sco&sig=kygg34%2BA6MRfXqNq63WqSCEQF629TWw8mc/wqVDxxBI%3D'
+
+
+az keyvault storage sas-definition create --vault-name lbkvtest01 --account-name lbstoragekvtest01 -n testSAS --validity-period P1D --sas-type account --template-uri "se=2021-01-19%26sp=rw%26spr=https%26sv=2018-03-28%26ss=bqtf%26srt=sco%26sig=kygg34%2BA6MRfXqNq63WqSCEQF629TWw8mc/wqVDxxBI%3D"
+
+
+
+az login -u bulu@mcpod.partner.onmschina.cn -p 2wsx#EDC4rfv
+
+
+lbadmin@lblinuxtest01:~$ az keyvault storage sas-definition create --vault-name lbkvtest01 --account-name lbstoragekvtest01 -n testSAS --validity-period P1D --sas-type account --template-uri 'se=2021-01-19&sp=rw&spr=https&sv=2018-03-28&ss=bqtf&srt=sco&sig=kygg34%2BA6MRfXqNq63WqSCEQF629TWw8mc/wqVDxxBI%3D'
+{
+  "attributes": {
+    "created": "2021-01-18T11:01:53+00:00",
+    "enabled": true,
+    "recoveryLevel": "Recoverable+Purgeable",
+    "updated": "2021-01-18T11:01:53+00:00"
+  },
+  "id": "https://lbkvtest01.vault.azure.cn/storage/lbstoragekvtest01/sas/testSAS",
+  "sasType": "account",
+  "secretId": "https://lbkvtest01.vault.azure.cn/secrets/lbstoragekvtest01-testSAS",
+  "tags": null,
+  "templateUri": "se=2021-01-19&sp=rw&spr=https&sv=2018-03-28&ss=bqtf&srt=sco&sig=kygg34%2BA6MRfXqNq63WqSCEQF629TWw8mc/wqVDxxBI%3D",
+  "validityPeriod": "P1D"
+}
+
+
+
+az keyvault storage sas-definition show --id https://lbkvtest01.vault.azure.cn/storage/lbstoragekvtest01/sas/testSAS
+
+
+                                                 [--disabled [{true,false}]]
+PS C:\Users\bulu> az keyvault storage sas-definition show --id https://lbkvtest01.vault.azure.cn/storage/lbstoragekvtest01/sas/testSAS
+{
+  "attributes": {
+    "created": "2021-01-18T11:01:53+00:00",
+    "enabled": true,
+    "recoveryLevel": "Recoverable+Purgeable",
+    "updated": "2021-01-18T11:01:53+00:00"
+  },
+  "id": "https://lbkvtest01.vault.azure.cn/storage/lbstoragekvtest01/sas/testSAS",
+  "sasType": "account",
+  "secretId": "https://lbkvtest01.vault.azure.cn/secrets/lbstoragekvtest01-testSAS",
+  "tags": null,
+  "templateUri": "se=2021-01-19&sp=rw&spr=https&sv=2018-03-28&ss=bqtf&srt=sco&sig=kygg34%2BA6MRfXqNq63WqSCEQF629TWw8mc/wqVDxxBI%3D",
+  "validityPeriod": "P1D"
+}
+PS C:\Users\bulu>
+
+
+PS C:\LBWorkSpace\MyCode\8-KeyVault - ServicePrinciple Access - Python> python case.py
+https://lbkvtest01.vault.azure.cn
+AccessToken(token='eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IkpSNGxDdzkwTVAzZGhldWptdzdJNVNVUWE5NCIsImtpZCI6IkpSNGxDdzkwTVAzZGhldWptdzdJNVNVUWE5NCJ9.eyJhdWQiOiJodHRwczovL3ZhdWx0LmF6dXJlLmNuIiwiaXNzIjoiaHR0cHM6Ly9zdHMuY2hpbmFjbG91ZGFwaS5jbi85NTRkZGFkOC02NmQ3LTQ3YTgtOGY5Zi0xMzE2MTUyZDk1ODcvIiwiaWF0IjoxNjEwOTc0Nzk4LCJuYmYiOjE2MTA5NzQ3OTgsImV4cCI6MTYxMDk3ODY5OCwiYWlvIjoiNDJKZ1lEZ3FzaWZsczlYTGpYZGp4THk3WDZsNkFRQT0iLCJhcHBpZCI6Ijg2MjZhMWQxLTA1YWQtNDk5OS04Njc5LTA1MzE4MTIxN2QyMiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLmNoaW5hY2xvdWRhcGkuY24vOTU0ZGRhZDgtNjZkNy00N2E4LThmOWYtMTMxNjE1MmQ5NTg3LyIsIm9pZCI6Ijg5ZjM3OTQ5LWUyNTYtNDY1MC04ZWY4LTAwMjA1MDYwMzQyOCIsInJoIjoiMC5BQUFBMk5wTmxkZG1xRWVQbnhNV0ZTMlZoOUdoSm9hdEJabEpobmtGTVlFaGZTSUJBQUEuIiwic3ViIjoiODlmMzc5NDktZTI1Ni00NjUwLThlZjgtMDAyMDUwNjAzNDI4IiwidGlkIjoiOTU0ZGRhZDgtNjZkNy00N2E4LThmOWYtMTMxNjE1MmQ5NTg3IiwidXRpIjoiZUZaeGI4RnhiRW12a3g0OVdaNGhBQSIsInZlciI6IjEuMCJ9.iGf6k9vf_2KH-muoGD1pI05biKJ2jhFwHrzDtafO7CvO4obI1L4B-QsucvrQAUsvcONexr_hvLU5HIUNMKXFu59ZWod7mBTMe4oOIvlqxn8j9TA3N2oXdu3C7nvWtlHZoNNSVsSmt8XnZTYfb98hW6YXmAtQ-h-v1oVpKkbyBPNlSVL28xqix8mo3IFCqIfE2Xe30AWFJty67DFE6viFzLOH4QD0wzpSzy6LbMn7n4UzdxIWfG5-EkheEDoK4jis5t059tDirfykq7HgZkFpbzILI8smb-AY-vqf5WdBKNdDdNGsZGr_bUF_BAYJq8SEcexKmgd-dTQRloLYwxvhMQ', expires_on=1610978696)
+Your secret is '?sv=2018-03-28&ss=bqtf&srt=sco&sp=rw&se=2021-01-19T13:04:59Z&spr=https&sig=zs1Khr4gO9qWDIVE%2F8kKufzdrv2SXVKY4Uan6bdMHqU%3D'.
+Your secret properties not_before(nbf) is 'None'.
+Your secret properties expires_on is '2021-01-19 13:04:59+00:00'.
+
+
+
